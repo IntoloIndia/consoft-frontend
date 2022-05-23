@@ -19,6 +19,12 @@ target 'ConSoftApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
   target 'ConSoftAppTests' do
     inherit! :complete
     # Pods for testing
