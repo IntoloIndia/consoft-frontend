@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const coupon = require('../assets/icons/coupon.png');
 const cross = require('../assets/icons/cross.png');
 const cart = require('../assets/icons/cart.png');
@@ -60,13 +59,3 @@ export default {
   cancel,
   arr_down,
 };
-=======
-const task = require("../assets/icons/task.png");
-const inprogress = require("../assets/icons/inprogress.png");
-const done = require("../assets/icons/done.png");
-const todo = require("../assets/icons/todo.png");
-
-export default {
-    task, inprogress,done,todo   
-}
->>>>>>> c57262a5220d38d663851ea79dd20d5245124ec9
