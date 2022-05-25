@@ -31,9 +31,10 @@ function TaskModal({ taskModal, settaskModal }) {
 
     const [list, setlist] = React.useState(data.list)
     const [Per, setPer] = React.useState(0)
-    const [count, setCount] = React.useState([])
+    const [count, setCount] = React.useState(0)
     const [tempNum, settempNum] = React.useState(null)
     console.log(data);
+
     const _head = (item) => {
         return (
             <View style={styles.header} key={item.key}>
@@ -58,13 +59,13 @@ function TaskModal({ taskModal, settaskModal }) {
 
         }
         else { 
-            setPer({ count: count + 1 });
+            setCount( count + 1 );
         }
     };
 
     //decrease counter
     const decrease = () => {
-        setPer({ count: count - 1 });
+        setCount( count - 1 );
     };
 
     const handleOnTextChange = (e) => {

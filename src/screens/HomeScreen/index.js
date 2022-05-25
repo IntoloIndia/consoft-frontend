@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, ScrollView, Modal, Pressable, TouchableHighlight, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { icons } from '../../../constants'
 import LinearGradient from 'react-native-linear-gradient'
@@ -7,34 +7,36 @@ import data from '../../../test_api/api'
 import Icons from 'react-native-vector-icons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import {TaskModal,InProgressModal,DoneModal} from './HomeModal'
 
 
 // Icons.loadFont();
-console.log(icons.todo);
+// console.log(icons.todo);
+
 
 const HomeScreen = () => {
+  const val = "helo world"
+  const [taskModal, settaskModal] = useState(false)
+  const [inProgressModal, setinProgressModal] = useState(false)
+  const [doneModal, setdoneModal] = useState(false)
+  const [taskModalnum, settaskModalNum] = useState(false)
+  const [inProgressModalnum, setinProgressModalNum] = useState(false)
+  const [doneModalnum, setdoneModalNum] = useState(false)
 
-  const [taskModal, setTaskModal] = React.useState(false)
-
-
-  const handleTask = () => {
-    return (
-      <View >
-      {alert("dsf")}
-        {/* <Modal
-          animationType="slide"
-          transparent={true}
-          visible={taskModal}
-          onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setTaskModal(!taskModal);
-        }}>
-          <TouchableOpacity     onPress={() => setTaskModal(!taskModal)}>hide</TouchableOpacity>
-        </Modal>
-        <TouchableOpacity   onPress={() => setTaskModal(true)}>show</TouchableOpacity> */}
-      </View>
-    )
+  const handleTask = () => {   
+   settaskModalNum(true);
+   settaskModal(true);  
   }
+  const handleInProgressTask = () => {
+    setinProgressModalNum(true)
+    setinProgressModal(true); 
+  }
+  const handleDoneTask = () => {
+    setdoneModalNum(true); 
+    setdoneModal(true);
+  }
+
+
   return (
     <LinearGradient colors={['#aec', '#aec', '#5df']} style={styles.container}>
       <View style={styles.header}>
@@ -50,7 +52,7 @@ const HomeScreen = () => {
         </View>
       </View>
       <View style={styles.tasks}>
-        <TouchableOpacity style={styles.Intask} onPress={handleTask}>
+        <TouchableOpacity style={styles.Intask} onPress={() => handleTask()}>
           <Image
 
             style={styles.icon1}
@@ -58,22 +60,26 @@ const HomeScreen = () => {
           />
           <Text style={styles.num_task}>To do</Text>
         </TouchableOpacity>
+        {taskModalnum ? (<TaskModal taskModal={taskModal} settaskModal={settaskModal} />) :null}
+    
         <View><Text >5 tasks </Text></View>
-        <View style={styles.Intask}>
+        <TouchableOpacity style={styles.Intask} onPress={() => handleInProgressTask()}>
           <Image
             style={styles.icon1}
             source={icons.inprogress}
           />
           <Text style={styles.num_task}>In Progress</Text>
-        </View>
+        </TouchableOpacity>
+        {inProgressModalnum ? (<InProgressModal inProgressModal={inProgressModal} setinProgressModal={setinProgressModal} />) :null}
         <Text >2 tasks in Progress</Text>
-        <View style={styles.Intask}>
+        <TouchableOpacity style={styles.Intask} onPress={() => handleDoneTask()}>
           <Image
             style={styles.icon1}
             source={icons.done}
           />
           <Text style={styles.num_task}>Done</Text>
-        </View>
+        </TouchableOpacity>
+        {doneModalnum ? (<DoneModal doneModal={doneModal} setdoneModal={setdoneModal} />) : null}
         <Text>3 tasks  Done</Text>
       </View>
       <View style={styles.report_section_title}>
@@ -91,8 +97,7 @@ const HomeScreen = () => {
                   size={55}
                   width={6}
                   fill={35}
-                  tintColor="red"
-                  // onAnimationComplete={() => console.log('onAnimationComplete')}
+                  tintColor="red"              
                   backgroundColor="#3d5875" >
                   {
                     (fill) => (
@@ -111,6 +116,8 @@ const HomeScreen = () => {
     </LinearGradient>
   )
 }
+
+
 const styles = StyleSheet.create({
 
   container: {
