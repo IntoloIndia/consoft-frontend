@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import constants from "./constants";
 import theme, { COLORS, SIZES, FONTS } from "./theme";
 import images from "./images";
@@ -14,3 +15,11 @@ export {
     icons,
     dummyData,
 }
+=======
+
+import icons from "./icons.js";
+
+// import theme, { COLORS, SIZES, FONTS } from "./theme.js";
+
+export {  icons };
+>>>>>>> c57262a5220d38d663851ea79dd20d5245124ec9
